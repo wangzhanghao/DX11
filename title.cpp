@@ -19,7 +19,11 @@ void Title::Update()
 {
 	Scene::Update();
 
-	if (Input::GetKeyTrigger(VK_SPACE))
+	if (Input::GetKeyTrigger(VK_F1))
+	{
+		Manager::SetScene<Game>();
+	}
+	if (Input::GetKeyTrigger(VK_F2))
 	{
 		Manager::SetScene<Game>();
 	}

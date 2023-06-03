@@ -32,9 +32,6 @@ cbuffer MaterialBuffer : register(b3)
 	MATERIAL Material;
 }
 
-
-
-
 struct LIGHT
 {
 	bool Enable;
@@ -67,11 +64,26 @@ struct ATMOSPHERE
     float _Km;
     float fSamples;
     float fScaleDepth;
+    float2 Dummy;
 };
-cbuffer CameraBuffer : register(b6)
+cbuffer AtmosphereBuffer : register(b6)
 {
     ATMOSPHERE Atmos;
 }
+
+struct Cloud
+{
+    float speed;
+    float3 windDir;
+    float matchingstep;
+    int matchingcount;
+    float2 dummy;
+};
+cbuffer CloudBuffer : register(b7)
+{
+    Cloud cloud;
+}
+
 
 struct VS_IN
 {

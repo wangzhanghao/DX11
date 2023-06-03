@@ -25,6 +25,9 @@
     <Filter Include="ソース ファイル\shader">
       <UniqueIdentifier>{1d08be3d-1afa-4d9a-9ace-6bedb7d9f510}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\imgui">
+      <UniqueIdentifier>{108b242b-b9ce-4e80-a9ae-0f25de88311a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="scene.h">
@@ -102,6 +105,30 @@
     <ClInclude Include="fieldModel.h">
       <Filter>ソース ファイル\game_object</Filter>
     </ClInclude>
+    <ClInclude Include="imconfig.h">
+      <Filter>ソース ファイル\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui.h">
+      <Filter>ソース ファイル\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\imgui_impl_dx11.h">
+      <Filter>ソース ファイル\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\imgui_impl_win32.h">
+      <Filter>ソース ファイル\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\imgui_internal.h">
+      <Filter>ソース ファイル\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\imstb_textedit.h">
+      <Filter>ソース ファイル\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\imstb_rectpack.h">
+      <Filter>ソース ファイル\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\imstb_truetype.h">
+      <Filter>ソース ファイル\imgui</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="camera.cpp">
@@ -172,6 +199,24 @@
     </ClCompile>
     <ClCompile Include="fieldModel.cpp">
       <Filter>ソース ファイル\game_object</Filter>
+    </ClCompile>
+    <ClCompile Include="backends\imgui_impl_dx11.cpp">
+      <Filter>ソース ファイル\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="backends\imgui_impl_win32.cpp">
+      <Filter>ソース ファイル\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="backends\imgui.cpp">
+      <Filter>ソース ファイル\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="backends\imgui_tables.cpp">
+      <Filter>ソース ファイル\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="backends\imgui_widgets.cpp">
+      <Filter>ソース ファイル\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="backends\imgui_draw.cpp">
+      <Filter>ソース ファイル\imgui</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

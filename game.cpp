@@ -7,6 +7,8 @@
 #include "result.h"
 #include "input.h"
 
+Cloud cl = {};
+
 void Game::Init()
 {
 	//assert(mgr_Model);
@@ -47,6 +49,10 @@ void Game::Init()
 	D3DXVec4Normalize(&light.Direction, &light.Direction);
 	light.Ambient = D3DXCOLOR(0.2f, 0.2f, 0.2f, 1.0f);
 	light.Diffuse = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);
+	cl.speed = 0.000f;
+	cl.windDir = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+	cl.matchingstep = 0.05f;
+	cl.matchingcount = 150;
 }
 
 void Game::Uninit()
@@ -78,5 +84,12 @@ void Game::Update()
 	{
 		light.framecount = 0;
 	}
+	ImGui::SliderFloat3("LightDirection", light.Direction, -0.5f, 0.5f);
 	Renderer::SetLight(light);
+
+	ImGui::SliderFloat3("WindDirection", cl.windDir, 0.0f, 1.0f);
+	ImGui::SliderFloat("WindSpeed", &cl.speed, 0.0f, 0.05f);
+	ImGui::SliderFloat("MatchingStep", &cl.matchingstep, 0.0f, 0.5f);
+	ImGui::SliderInt("MatchingCount", &cl.matchingcount, 0, 1000);
+	Renderer::SetCloud(cl);
 }

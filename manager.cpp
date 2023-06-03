@@ -42,6 +42,10 @@ void Manager::Draw()
 	Renderer::Begin();
 
 	m_Scene->Draw();
+	// Rendering
+	ImGui::Render();
+	//const float clear_color_with_alpha[4] = { clearColor.x * clearColor.w, clearColor.y * clearColor.w, clearColor.z * clearColor.w, clearColor.w };
+	ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
 
 	Renderer::End();
 }

@@ -46,6 +46,15 @@ struct ATMOSPHERE
 	float Dummy[2];
 };
 
+struct Cloud
+{
+	float speed;
+	D3DXVECTOR3 windDir;
+	float matchingstep;
+	int matchingcount;
+	D3DXVECTOR2 dummy;
+};
+
 class Renderer
 {
 private:
@@ -65,6 +74,7 @@ private:
 	static ID3D11Buffer*			m_LightBuffer;
 	static ID3D11Buffer*			m_CameraBuffer;
 	static ID3D11Buffer*			m_AtmosphereBuffer;
+	static ID3D11Buffer*			m_CloudBuffer;
 
 	static ID3D11DepthStencilState* m_DepthStateEnable;
 	static ID3D11DepthStencilState* m_DepthStateDisable;
@@ -82,10 +92,12 @@ public:
 	static void SetMaterial(MATERIAL Material);
 	static void SetCamera(CAMERA Camera);
 	static void SetAtmosphere(ATMOSPHERE Atmos);
+	static void SetCloud(Cloud Clou);
 	static void SetLight(LIGHT Light);
 
 	static ID3D11Device* GetDevice(void) { return m_Device; }
 	static ID3D11DeviceContext* GetDeviceContext(void) { return m_DeviceContext; }
+	static ID3D11RenderTargetView* GetRenderTargetView(void) { return m_RenderTargetView; }
 
 	static void CreateVertexShader(ID3D11VertexShader** VertexShader, ID3D11InputLayout** VertexLayout, const char* FileName);
 	static void CreatePixelShader(ID3D11PixelShader** PixelShader, const char* FileName);

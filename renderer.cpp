@@ -17,6 +17,7 @@ ID3D11Buffer*			Renderer::m_MaterialBuffer = NULL;
 ID3D11Buffer*			Renderer::m_LightBuffer = NULL;
 ID3D11Buffer*			Renderer::m_CameraBuffer = NULL;
 ID3D11Buffer*			Renderer::m_AtmosphereBuffer = NULL;
+ID3D11Buffer*			Renderer::m_CloudBuffer = NULL;
 
 ID3D11DepthStencilState* Renderer::m_DepthStateEnable = NULL;
 ID3D11DepthStencilState* Renderer::m_DepthStateDisable = NULL;
@@ -191,6 +192,12 @@ void Renderer::Init()
 	m_DeviceContext->VSSetConstantBuffers(6, 1, &m_AtmosphereBuffer);
 	m_DeviceContext->PSSetConstantBuffers(6, 1, &m_AtmosphereBuffer);
 
+	bufferDesc.ByteWidth = sizeof(Cloud);
+
+	m_Device->CreateBuffer(&bufferDesc, NULL, &m_CloudBuffer);
+	m_DeviceContext->VSSetConstantBuffers(7, 1, &m_CloudBuffer);
+	m_DeviceContext->PSSetConstantBuffers(7, 1, &m_CloudBuffer);
+
 	// ライト初期化
 	LIGHT light{};
 	light.Enable = true;
@@ -220,6 +227,13 @@ void Renderer::Init()
 	atmos.fSamples = 8.0;
 	atmos.fScaleDepth = 0.25;
 	SetAtmosphere(atmos);
+
+	Cloud cl{};
+	cl.speed = 0.001;
+	cl.windDir = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+	cl.matchingstep = 0.05f;
+	cl.matchingcount = 150;
+	SetCloud(cl);
 }
 
 void Renderer::Uninit()
@@ -230,6 +244,7 @@ void Renderer::Uninit()
 	m_LightBuffer->Release();
 	m_CameraBuffer->Release();
 	m_AtmosphereBuffer->Release();
+	m_CloudBuffer->Release();
 	m_MaterialBuffer->Release();
 
 	m_DeviceContext->ClearState();
@@ -312,6 +327,11 @@ void Renderer::SetCamera(CAMERA Camera)
 void Renderer::SetAtmosphere(ATMOSPHERE Atmos)
 {
 	m_DeviceContext->UpdateSubresource(m_AtmosphereBuffer, 0, NULL, &Atmos, 0, 0);
+}
+
+void Renderer::SetCloud(Cloud Clou)
+{
+	m_DeviceContext->UpdateSubresource(m_CloudBuffer, 0, NULL, &Clou, 0, 0);
 }
 
 void Renderer::SetLight(LIGHT Light)

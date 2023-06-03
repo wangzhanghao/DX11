@@ -17,8 +17,8 @@ float getDensity(float3 pos)
     weight = pow(weight, 0.5);
   
     pos = pos * 0.04;
-    pos.x += (float) Light.frameCount * 0.005;
-    pos.y -= (float) Light.frameCount * 0.001;
+    pos.x += (float) Light.frameCount * cloud.speed * cloud.windDir.x;
+    pos.y -= (float) Light.frameCount * cloud.speed * cloud.windDir.y;
     float Noise = snoise(pos);
     Noise += snoise(pos * 3.5) / 3.5;
     Noise += snoise(pos * 12.25) / 12.25;
@@ -70,9 +70,9 @@ float4 getCloud(float3 worldPos, float3 cameraPos)
     }
 
 	// ray marching
-    for (int i = 0; i < 130; i++)
+    for (int i = 0; i < cloud.matchingcount; i++)
     {
-        testPoint += step * (1.0 + i * 0.05);
+        testPoint += step * (0.1  + i * cloud.matchingstep);
         if (bottom > testPoint.y || testPoint.y > top || -width > testPoint.x || testPoint.x > width || -width > testPoint.z || testPoint.z > width)
         {
             break;
